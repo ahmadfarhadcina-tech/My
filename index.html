@@ -534,6 +534,14 @@
 
             deferredPWAInstallPrompt = null;
         });
-    </script>
+   </script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/My/sw.js");
+    });
+}
+</script>
 </body>
 </html>
