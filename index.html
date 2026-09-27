@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farhad Cina — Creator of Cina Games | Web Developer</title>
+    <meta name="description" content="Personal portfolio of Farhad Cina, an Afghan web developer and creator showcasing web development, game projects, and digital applications.">
+    
+    <!-- Open Graph / Twitter Metadata -->
+    <meta property="og:title" content="Farhad Cina — Creator of Cina Games">
+    <meta property="og:description" content="Web developer, game creator, and builder of digital projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/profile.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ahmadfarhadcina-tech.github.io/">
+    
+    <!-- Favicon & Manifest -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Structured Data (Person) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ahmad Farhad Cina",
+      "alternateName": "Farhad Cina",
+      "jobTitle": "Web Developer & Game Creator",
+      "url": "https://ahmadfarhadcina-tech.github.io/",
+      "sameAs": [
+        "https://github.com/ahmadfarhadcina-tech"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Navigation Bar -->
+    <header id="header" class="site-header">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-text">Farhad Cina</span>
+                <span class="logo-sub">Cina Games</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
+                <a href="#about" class="nav-link" data-i18n="nav_about">About</a>
+                <a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a>
+                <a href="#projects" class="nav-link" data-i18n="nav_projects">Projects</a>
+                <a href="#journey" class="nav-link" data-i18n="nav_journey">Journey</a>
+                <a href="#github" class="nav-link" data-i18n="nav_github">GitHub</a>
+                <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Language Selector -->
+                <select id="language-select" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                    <option value="ar">العربية</option>
+                    <option value="ps">پښتو</option>
+                    <option value="tr">Türkçe</option>
+                </select>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme">
+                    <span id="theme-icon">🌙</span>
+                </button>
+
+                <!-- Settings Button -->
+                <button id="settings-btn" class="icon-btn" aria-label="Open Settings">
+                    ⚙️
+                </button>
+
+                <!-- Mobile Menu Hamburger -->
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">Creator of Cina Games</span>
+                    <h1 class="hero-title">Farhad Cina</h1>
+                    <p class="hero-role" data-i18n="hero_role">Web Developer • Game Creator</p>
+                    <p class="hero-desc" data-i18n="hero_desc">I build websites, web applications and game projects while exploring new ideas through code.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary" data-i18n="btn_view_projects">View My Projects</a>
+                        <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="btn_github">GitHub</a>
+                        <a href="#contact" class="btn btn-outline" data-i18n="btn_contact_me">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <!-- Note to owner: Place your profile picture at assets/images/profile.jpg -->
+                    <img src="assets/images/profile.jpg" alt="Farhad Cina" class="profile-img" id="profile-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2364748b\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'></path><circle cx=\'12\' cy=\'7\' r=\'4\'></circle></svg>';">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="about_title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3 data-i18n="about_background_title">Background & Identity</h3>
+                        <p data-i18n="about_text_1">My name is Ahmad Farhad Cina, known publicly as Farhad Cina. I am a developer and creator from Afghanistan, operating under the brand Cina / Creator of Cina Games.</p>
+                        <p data-i18n="about_text_2">I focus on building functional web applications, clean user interfaces, and interactive game projects from the ground up.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3 data-i18n="about_education_title">Education & Learning</h3>
+                        <ul class="about-list">
+                            <li><strong data-i18n="edu_school_label">School:</strong> Lise Naser Shaheed (لیسه ناصر شهید)</li>
+                            <li><strong data-i18n="edu_grade_label">Education Level:</strong> Finished Grade 12 / High School graduate</li>
+                            <li><strong data-i18n="edu_cert_label">Additional Certification:</strong> English Course Certificate</li>
+                        </ul>
+                        <div id="cv-container" class="cv-wrapper">
+                            <!-- Populated dynamically if CV exists -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title" data-i18n="skills_title">Core Technical Skills</h2>
+                <p class="section-subtitle" data-i18n="skills_subtitle">Essential technologies and tools I use to build projects.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 data-i18n="skill_cat_web">Web Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag" data-i18n="skill_responsive">Responsive Web Design</span>
+                            <span class="skill-tag">PWA</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 data-i18n="skill_cat_backend">Backend / Database</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Supabase</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 data-i18n="skill_cat_tools">Development Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 data-i18n="skill_cat_graphics">3D / Web Graphics Technology</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Three.js</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 data-i18n="skill_cat_game">Game Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-i18n="skill_gamedev">Game Development</span>
+                            <span class="skill-tag" data-i18n="skill_gameproto">Game Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="projects_title">Projects</h2>
+                <p class="section-subtitle" data-i18n="projects_subtitle">Explore my active development projects, game prototypes, and web applications.</p>
+                
+                <!-- Project Filters -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+                    <button class="filter-btn" data-filter="Web" data-i18n="filter_web">Web</button>
+                    <button class="filter-btn" data-filter="Games" data-i18n="filter_games">Games</button>
+                    <button class="filter-btn" data-filter="Marketplace" data-i18n="filter_marketplace">Marketplace</button>
+                    <button class="filter-btn" data-filter="E-Commerce" data-i18n="filter_ecommerce">E-Commerce</button>
+                </div>
+
+                <!-- Projects Container -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Dynamically populated from projects.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section id="journey" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title" data-i18n="journey_title">My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 data-i18n="journey_item_1_title">School & High School Completion</h3>
+                            <p data-i18n="journey_item_1_desc">Graduated from Grade 12 at Lise Naser Shaheed, building a strong educational foundation.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 data-i18n="journey_item_2_title">English Course Certification</h3>
+                            <p data-i18n="journey_item_2_desc">Completed professional English language training to expand access to global development resources.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 data-i18n="journey_item_3_title">Beginning Web Development</h3>
+                            <p data-i18n="journey_item_3_desc">Started writing code, mastering HTML, CSS, and JavaScript, and establishing core web development workflows.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 data-i18n="journey_item_4_title">Cina Games Brand & Game Prototyping</h3>
+                            <p data-i18n="journey_item_4_desc">Launched the Cina Games creator brand and began developing interactive game prototypes like The Ciner.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 data-i18n="journey_item_5_title">Web Applications & Current Projects</h3>
+                            <p data-i18n="journey_item_5_desc">Developing modern web apps, e-commerce stores, marketplaces (Bazaarak), and utility software projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Section -->
+        <section id="github" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="github_title">GitHub Activity & Repositories</h2>
+                <p class="section-subtitle" data-i18n="github_subtitle">Public code repositories and open-source contributions.</p>
+                
+                <div class="github-profile-card" id="github-profile-card">
+                    <div class="github-loading" data-i18n="github_loading">Loading public repositories...</div>
+                </div>
+                
+                <div class="github-action-wrapper">
+                    <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="btn_view_github_profile">View Full GitHub Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact_title">Get In Touch</h2>
+                <p class="section-subtitle" data-i18n="contact_subtitle">Connect with me across platforms or reach out for collaboration.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card-item">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>ahmadfarhadcina-tech</p>
+                        <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Visit Profile &rarr;</a>
+                    </div>
+                    <div class="contact-card-item">
+                        <div class="contact-icon">📺</div>
+                        <h3>YouTube</h3>
+                        <p>@Farhad_Cina & @CinaGames-b4v</p>
+                        <a href="https://youtube.com/@Farhad_Cina" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Visit Channel &rarr;</a>
+                    </div>
+                    <div class="contact-card-item">
+                        <div class="contact-icon">✈️</div>
+                        <h3>Telegram</h3>
+                        <p>@afghangamerx</p>
+                        <a href="https://t.me/afghangamerx" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Message &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Contact Message Form (Prepared for future backend integration) -->
+                <div class="contact-form-container">
+                    <h3 data-i18n="form_title">Send a Message</h3>
+                    <form id="contact-form" class="contact-form" onsubmit="event.preventDefault(); alert(translations[currentLang].form_alert || 'Message form ready for future backend integration.');">
+                        <div class="form-group">
+                            <label for="visitor-name" data-i18n="form_name">Your Name</label>
+                            <input type="text" id="visitor-name" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="visitor-email" data-i18n="form_email">Your Email / Contact</label>
+                            <input type="text" id="visitor-email" required placeholder="Enter your email or contact">
+                        </div>
+                        <div class="form-group">
+                            <label for="visitor-message" data-i18n="form_message">Message</label>
+                            <textarea id="visitor-message" rows="4" required placeholder="Write your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-i18n="form_submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p>&copy; <span id="current-year">2026</span> Farhad Cina (Cina Games). <span data-i18n="footer_rights">All rights reserved.</span></p>
+            <div class="footer-socials">
+                <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://youtube.com/@Farhad_Cina" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://t.me/afghangamerx" target="_blank" rel="noopener noreferrer">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">&times;</button>
+            <div id="modal-body">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" aria-hidden="true">
+        <div class="modal-content settings-content">
+            <button class="modal-close" id="settings-close-btn" aria-label="Close Settings">&times;</button>
+            <h3 data-i18n="settings_title">Website Settings</h3>
+            
+            <div class="setting-option">
+                <label for="setting-lang" data-i18n="setting_lang">Language</label>
+                <select id="setting-lang">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                    <option value="ar">العربية</option>
+                    <option value="ps">پښتو</option>
+                    <option value="tr">Türkçe</option>
+                </select>
+            </div>
+
+            <div class="setting-option">
+                <label for="setting-theme" data-i18n="setting_theme">Theme Mode</label>
+                <select id="setting-theme">
+                    <option value="dark">🌙 Dark</option>
+                    <option value="light">☀️ Light</option>
+                    <option value="system">🖥 System</option>
+                </select>
+            </div>
+
+            <div class="setting-option checkbox-option">
+                <label>
+                    <input type="checkbox" id="setting-reduced-motion">
+                    <span data-i18n="setting_motion">Reduce Animations / Motion</span>
+                </label>
+            </div>
+
+            <div class="setting-actions">
+                <button id="reset-preferences-btn" class="btn btn-outline" data-i18n="setting_reset">Reset Preferences</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">&uarr;</button>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/projects.js"></script>
+    <script src="assets/js/github.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
