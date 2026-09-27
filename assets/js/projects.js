@@ -6,7 +6,7 @@ const projectsData = [
         status: "In Development",
         description: "An original open-world action game project inspired by the structure of large open-world games featuring character Cina, Ravan, Darkes, vehicles, NPCs, and dynamic missions.",
         technologies: ["Unreal Engine 5", "Three.js", "Game Prototyping"],
-        image: "assets/images/projects/the-ciner.jpg",
+        image: "the-ciner.jpg",
         demoUrl: "",
         githubUrl: "",
         promo: "CINER COMING SOON — LATE 2027",
@@ -26,7 +26,7 @@ const projectsData = [
         status: "In Development",
         description: "A sports-focused web platform concept featuring match information, live matches, upcoming matches, future sections, and a simulated virtual wallet balance system.",
         technologies: ["JavaScript", "HTML", "CSS", "Responsive Web Design"],
-        image: "assets/images/projects/sportx.jpg",
+        image: "sportx.jpg",
         demoUrl: "",
         githubUrl: "",
         features: [
@@ -43,7 +43,7 @@ const projectsData = [
         status: "In Development",
         description: "An Afghanistan-focused online marketplace concept inspired by large marketplace platforms with product listings, seller accounts, media support, and Persian RTL interface.",
         technologies: ["JavaScript", "Supabase", "HTML", "CSS"],
-        image: "assets/images/projects/bazaarak.jpg",
+        image: "bazaarak.jpg",
         demoUrl: "",
         githubUrl: "",
         features: [
@@ -61,7 +61,7 @@ const projectsData = [
         status: "Prototype",
         description: "A separate online shopping website project focused on presenting products through a modern e-commerce interface with product browsing, categories, search, and cart interface.",
         technologies: ["HTML", "CSS", "JavaScript", "Responsive Web Design"],
-        image: "assets/images/projects/online-shop.jpg",
+        image: "online-shop.jpg",
         demoUrl: "",
         githubUrl: "",
         features: [
@@ -78,7 +78,7 @@ const projectsData = [
         status: "In Development",
         description: "A daily accounting and exchange-office management web application concept supporting AFN, USD, EUR, and TRY currencies with client management and secure authentication.",
         technologies: ["Supabase", "JavaScript", "Authentication", "Multi-language"],
-        image: "assets/images/projects/sarafi.jpg",
+        image: "sarafi.jpg",
         demoUrl: "",
         githubUrl: "",
         features: [
@@ -95,7 +95,7 @@ const projectsData = [
         status: "Active / Ongoing",
         description: "The personal website and digital platform for the Cina Games creator brand showcasing games, creator projects, development work, and digital experiments.",
         technologies: ["HTML", "CSS", "JavaScript", "PWA", "GitHub Pages"],
-        image: "assets/images/projects/cina-games.jpg",
+        image: "cina-games.jpg",
         demoUrl: "",
         githubUrl: "https://github.com/ahmadfarhadcina-tech",
         features: [
