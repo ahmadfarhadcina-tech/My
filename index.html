@@ -10,13 +10,13 @@
     <meta property="og:title" content="Farhad Cina — Creator of Cina Games">
     <meta property="og:description" content="Web developer, game creator, and builder of digital projects.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/profile.jpg">
+    <meta property="og:image" content="profile.jpg">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://ahmadfarhadcina-tech.github.io/">
     
     <!-- Favicon & Manifest -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     
     <!-- Stylesheet -->
@@ -36,6 +36,85 @@
       ]
     }
     </script>
+
+    <!-- PWA Install Card Style -->
+    <style>
+        #pwa-install-card {
+            display: none;
+            margin: 20px auto;
+            max-width: 900px;
+            padding: 20px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+            border: 1px solid rgba(255,255,255,.1);
+        }
+
+        #pwa-install-card .pwa-install-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        #pwa-install-card .pwa-install-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        #pwa-install-card .pwa-install-text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        #pwa-install-card .pwa-install-text h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        #pwa-install-card .pwa-install-text p {
+            margin: 0;
+            opacity: .8;
+            font-size: 14px;
+        }
+
+        #pwa-install-button {
+            border: 0;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: #3b82f6;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        #pwa-install-button:hover {
+            transform: translateY(-1px);
+            opacity: .9;
+        }
+
+        @media (max-width: 600px) {
+            #pwa-install-card {
+                margin: 15px;
+                padding: 16px;
+            }
+
+            #pwa-install-card .pwa-install-content {
+                align-items: flex-start;
+            }
+
+            #pwa-install-button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
@@ -91,6 +170,27 @@
 
     <!-- Main Content -->
     <main id="main-content">
+
+        <!-- PWA Install Card -->
+        <div id="pwa-install-card">
+            <div class="pwa-install-content">
+                <img
+                    src="assets/images/favicon.png"
+                    alt="Farhad Cina"
+                    class="pwa-install-icon"
+                >
+
+                <div class="pwa-install-text">
+                    <h3>Install Farhad Cina</h3>
+                    <p>Install this portfolio as an app on your device for faster access.</p>
+                </div>
+
+                <button id="pwa-install-button" type="button">
+                    Install App
+                </button>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="hero-container">
@@ -107,7 +207,7 @@
                 </div>
                 <div class="hero-image-wrapper">
                     <!-- Note to owner: Place your profile picture at assets/images/profile.jpg -->
-                    <img src="profile.jpg" alt="Farhad Cina" class="profile-img" id="profile-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2364748b\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'></path><circle cx=\'12\' cy=\'7\' r=\'4\'></circle></svg>';">
+                    <img src="profile.jpg" alt="Farhad Cina" class="profile-img" id="profile-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2364748b\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'></path><circle cx=\'12\' cy=\'7\' r=\'4\'></circle></svg>'; ">
                 </div>
             </div>
         </section>
@@ -391,5 +491,49 @@
     <script src="assets/js/projects.js"></script>
     <script src="assets/js/github.js"></script>
     <script src="assets/js/app.js"></script>
+
+    <!-- PWA Install Logic -->
+    <script>
+        let deferredPWAInstallPrompt = null;
+
+        const pwaInstallCard = document.getElementById('pwa-install-card');
+        const pwaInstallButton = document.getElementById('pwa-install-button');
+
+        window.addEventListener('beforeinstallprompt', function (event) {
+            event.preventDefault();
+
+            deferredPWAInstallPrompt = event;
+
+            if (pwaInstallCard) {
+                pwaInstallCard.style.display = 'block';
+            }
+        });
+
+        if (pwaInstallButton) {
+            pwaInstallButton.addEventListener('click', async function () {
+                if (!deferredPWAInstallPrompt) {
+                    return;
+                }
+
+                deferredPWAInstallPrompt.prompt();
+
+                const result = await deferredPWAInstallPrompt.userChoice;
+
+                if (result.outcome === 'accepted') {
+                    pwaInstallCard.style.display = 'none';
+                }
+
+                deferredPWAInstallPrompt = null;
+            });
+        }
+
+        window.addEventListener('appinstalled', function () {
+            if (pwaInstallCard) {
+                pwaInstallCard.style.display = 'none';
+            }
+
+            deferredPWAInstallPrompt = null;
+        });
+    </script>
 </body>
 </html>
