@@ -1,0 +1,15 @@
+{
+  "name": "Farhad Cina — Portfolio",
+  "short_name": "Farhad Cina",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "assets/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
