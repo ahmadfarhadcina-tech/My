@@ -37,47 +37,79 @@
     }
     </script>
 
-    <!-- PWA Install Card Style -->
+    <!-- PWA / Language UI Style -->
     <style>
+        /* PWA Install Banner */
         #pwa-install-card {
             display: none;
-            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            margin: 25px auto 35px;
             max-width: 900px;
-            padding: 20px;
-            border-radius: 18px;
+            border-radius: 22px;
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,.18);
-            border: 1px solid rgba(255,255,255,.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+            border: 1px solid rgba(255, 255, 255, .12);
         }
 
-        #pwa-install-card .pwa-install-content {
+        .pwa-banner-image {
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pwa-banner-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(15, 23, 42, .95)
+            );
+        }
+
+        .pwa-banner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .45;
+        }
+
+        .pwa-install-content {
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 18px;
+            padding: 20px;
+            margin-top: -35px;
             flex-wrap: wrap;
         }
 
-        #pwa-install-card .pwa-install-icon {
-            width: 58px;
-            height: 58px;
-            border-radius: 14px;
+        .pwa-install-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
             object-fit: cover;
             flex-shrink: 0;
+            border: 3px solid rgba(255, 255, 255, .25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
         }
 
-        #pwa-install-card .pwa-install-text {
+        .pwa-install-text {
             flex: 1;
             min-width: 200px;
         }
 
-        #pwa-install-card .pwa-install-text h3 {
+        .pwa-install-text h3 {
             margin: 0 0 6px;
-            font-size: 20px;
+            font-size: 21px;
         }
 
-        #pwa-install-card .pwa-install-text p {
+        .pwa-install-text p {
             margin: 0;
             opacity: .8;
             font-size: 14px;
@@ -85,8 +117,8 @@
 
         #pwa-install-button {
             border: 0;
-            padding: 12px 20px;
-            border-radius: 12px;
+            padding: 13px 22px;
+            border-radius: 13px;
             background: #3b82f6;
             color: #fff;
             font-weight: 700;
@@ -96,33 +128,175 @@
         }
 
         #pwa-install-button:hover {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             opacity: .9;
         }
 
-        @media (max-width: 600px) {
-            #pwa-install-card {
-                margin: 15px;
-                padding: 16px;
+        /* PWA / Language Modal */
+        .pwa-modal,
+        .language-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, .65);
+            backdrop-filter: blur(8px);
+        }
+
+        .pwa-modal.active,
+        .language-modal.active {
+            display: flex;
+        }
+
+        .pwa-modal-box,
+        .language-modal-box {
+            width: min(420px, 100%);
+            padding: 28px;
+            border-radius: 24px;
+            background: #fff;
+            color: #111827;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .35);
+            animation: pwaModalIn .25s ease;
+            position: relative;
+        }
+
+        @keyframes pwaModalIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.96);
             }
 
-            #pwa-install-card .pwa-install-content {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .pwa-modal-close,
+        .language-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            border: 0;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .pwa-modal-icon {
+            width: 82px;
+            height: 82px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .pwa-modal-box h3,
+        .language-modal-box h3 {
+            margin: 5px 0 8px;
+            font-size: 23px;
+        }
+
+        .pwa-modal-box p,
+        .language-modal-box p {
+            margin: 0 0 22px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .pwa-modal-install {
+            width: 100%;
+            border: 0;
+            padding: 13px;
+            border-radius: 13px;
+            background: #3b82f6;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pwa-modal-cancel {
+            width: 100%;
+            border: 0;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 13px;
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Language Modal */
+        .language-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .language-options button {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            padding: 13px 15px;
+            border-radius: 13px;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .language-options button:hover {
+            background: #e2e8f0;
+            transform: translateX(3px);
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            #pwa-install-card {
+                margin: 20px 15px 30px;
+            }
+
+            .pwa-banner-image {
+                height: 85px;
+            }
+
+            .pwa-install-content {
                 align-items: flex-start;
+                padding: 17px;
+            }
+
+            .pwa-install-icon {
+                width: 60px;
+                height: 60px;
             }
 
             #pwa-install-button {
                 width: 100%;
             }
+
+            .pwa-modal-box,
+            .language-modal-box {
+                padding: 24px 18px;
+            }
         }
     </style>
 </head>
+
 <body>
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" aria-hidden="true"></div>
 
     <!-- Navigation Bar -->
     <header id="header" class="site-header">
         <div class="nav-container">
+
             <a href="#home" class="logo">
                 <span class="logo-text">Farhad Cina</span>
                 <span class="logo-sub">Cina Games</span>
@@ -139,6 +313,7 @@
             </nav>
 
             <div class="nav-actions">
+
                 <!-- Language Selector -->
                 <select id="language-select" aria-label="Select Language">
                     <option value="en">English</option>
@@ -164,6 +339,7 @@
                     <span></span>
                     <span></span>
                 </button>
+
             </div>
         </div>
     </header>
@@ -171,319 +347,950 @@
     <!-- Main Content -->
     <main id="main-content">
 
-        <!-- PWA Install Card -->
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+
+            <div class="hero-container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge" data-i18n="hero_badge">
+                        Creator of Cina Games
+                    </span>
+
+                    <h1 class="hero-title">
+                        Farhad Cina
+                    </h1>
+
+                    <p class="hero-role" data-i18n="hero_role">
+                        Web Developer • Game Creator
+                    </p>
+
+                    <p class="hero-desc" data-i18n="hero_desc">
+                        I build websites, web applications and game projects while exploring new ideas through code.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#projects"
+                           class="btn btn-primary"
+                           data-i18n="btn_view_projects">
+                            View My Projects
+                        </a>
+
+                        <a href="https://github.com/ahmadfarhadcina-tech"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-secondary"
+                           data-i18n="btn_github">
+                            GitHub
+                        </a>
+
+                        <a href="#contact"
+                           class="btn btn-outline"
+                           data-i18n="btn_contact_me">
+                            Contact Me
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="hero-image-wrapper">
+
+                    <!-- Current Profile Image -->
+                    <img
+                        src="profile.jpg"
+                        alt="Farhad Cina"
+                        class="profile-img"
+                        id="profile-img"
+                        onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2364748b\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'></path><circle cx=\'12\' cy=\'7\' r=\'4\'></circle></svg>';"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PWA Install Banner -->
         <div id="pwa-install-card">
-            <div class="pwa-install-content">
+
+            <div class="pwa-banner-image">
                 <img
-                    src="assets/images/favicon.png"
+                    src="favicon.png"
+                    alt="Farhad Cina App"
+                >
+            </div>
+
+            <div class="pwa-install-content">
+
+                <img
+                    src="favicon.png"
                     alt="Farhad Cina"
                     class="pwa-install-icon"
                 >
 
                 <div class="pwa-install-text">
-                    <h3>Install Farhad Cina</h3>
-                    <p>Install this portfolio as an app on your device for faster access.</p>
+
+                    <h3>
+                        Install Farhad Cina
+                    </h3>
+
+                    <p>
+                        Install this portfolio as an app for faster access.
+                    </p>
+
                 </div>
 
-                <button id="pwa-install-button" type="button">
+                <button
+                    id="pwa-install-button"
+                    type="button">
                     Install App
                 </button>
+
             </div>
+
         </div>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <span class="hero-badge" data-i18n="hero_badge">Creator of Cina Games</span>
-                    <h1 class="hero-title">Farhad Cina</h1>
-                    <p class="hero-role" data-i18n="hero_role">Web Developer • Game Creator</p>
-                    <p class="hero-desc" data-i18n="hero_desc">I build websites, web applications and game projects while exploring new ideas through code.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary" data-i18n="btn_view_projects">View My Projects</a>
-                        <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="btn_github">GitHub</a>
-                        <a href="#contact" class="btn btn-outline" data-i18n="btn_contact_me">Contact Me</a>
-                    </div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <!-- Note to owner: Place your profile picture at assets/images/profile.jpg -->
-                    <img src="profile.jpg" alt="Farhad Cina" class="profile-img" id="profile-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2364748b\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'></path><circle cx=\'12\' cy=\'7\' r=\'4\'></circle></svg>'; ">
-                </div>
+        <!-- PWA Install Modal -->
+        <div id="pwa-install-modal"
+             class="pwa-modal"
+             aria-hidden="true">
+
+            <div class="pwa-modal-box">
+
+                <button
+                    id="pwa-modal-close"
+                    class="pwa-modal-close"
+                    type="button">
+                    &times;
+                </button>
+
+                <img
+                    src="favicon.png"
+                    alt="Farhad Cina"
+                    class="pwa-modal-icon"
+                >
+
+                <h3>
+                    Install Farhad Cina
+                </h3>
+
+                <p>
+                    Install Farhad Cina Portfolio on your device for quick and easy access.
+                </p>
+
+                <button
+                    id="pwa-modal-install"
+                    class="pwa-modal-install"
+                    type="button">
+                    Install App
+                </button>
+
+                <button
+                    id="pwa-modal-cancel"
+                    class="pwa-modal-cancel"
+                    type="button">
+                    Cancel
+                </button>
+
             </div>
-        </section>
+
+        </div>
+
+        <!-- Language Modal -->
+        <div id="language-modal"
+             class="language-modal"
+             aria-hidden="true">
+
+            <div class="language-modal-box">
+
+                <button
+                    id="language-modal-close"
+                    class="language-modal-close"
+                    type="button">
+                    &times;
+                </button>
+
+                <h3>
+                    Select Language
+                </h3>
+
+                <p>
+                    Choose your preferred language.
+                </p>
+
+                <div class="language-options">
+
+                    <button type="button" data-language="en">
+                        🇬🇧 English
+                    </button>
+
+                    <button type="button" data-language="fa">
+                        🇮🇷 فارسی
+                    </button>
+
+                    <button type="button" data-language="ar">
+                        🇸🇦 العربية
+                    </button>
+
+                    <button type="button" data-language="ps">
+                        🇦🇫 پښتو
+                    </button>
+
+                    <button type="button" data-language="tr">
+                        🇹🇷 Türkçe
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
         <!-- About Section -->
         <section id="about" class="section">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="about_title">About Me</h2>
+
+                <h2 class="section-title" data-i18n="about_title">
+                    About Me
+                </h2>
+
                 <div class="about-grid">
+
                     <div class="about-card">
-                        <h3 data-i18n="about_background_title">Background & Identity</h3>
-                        <p data-i18n="about_text_1">My name is Ahmad Farhad Cina, known publicly as Farhad Cina. I am a developer and creator from Afghanistan, operating under the brand Cina / Creator of Cina Games.</p>
-                        <p data-i18n="about_text_2">I focus on building functional web applications, clean user interfaces, and interactive game projects from the ground up.</p>
+
+                        <h3 data-i18n="about_background_title">
+                            Background & Identity
+                        </h3>
+
+                        <p data-i18n="about_text_1">
+                            My name is Ahmad Farhad Cina, known publicly as Farhad Cina. I am a developer and creator from Afghanistan, operating under the brand Cina / Creator of Cina Games.
+                        </p>
+
+                        <p data-i18n="about_text_2">
+                            I focus on building functional web applications, clean user interfaces, and interactive game projects from the ground up.
+                        </p>
+
                     </div>
+
                     <div class="about-card">
-                        <h3 data-i18n="about_education_title">Education & Learning</h3>
+
+                        <h3 data-i18n="about_education_title">
+                            Education & Learning
+                        </h3>
+
                         <ul class="about-list">
-                            <li><strong data-i18n="edu_school_label">School:</strong> Lise Naser Shaheed (لیسه ناصر شهید)</li>
-                            <li><strong data-i18n="edu_grade_label">Education Level:</strong> Finished Grade 12 / High School graduate</li>
-                            <li><strong data-i18n="edu_cert_label">Additional Certification:</strong> English Course Certificate</li>
+
+                            <li>
+                                <strong data-i18n="edu_school_label">
+                                    School:
+                                </strong>
+                                Lise Naser Shaheed (لیسه ناصر شهید)
+                            </li>
+
+                            <li>
+                                <strong data-i18n="edu_grade_label">
+                                    Education Level:
+                                </strong>
+                                Finished Grade 12 / High School graduate
+                            </li>
+
+                            <li>
+                                <strong data-i18n="edu_cert_label">
+                                    Additional Certification:
+                                </strong>
+                                English Course Certificate
+                            </li>
+
                         </ul>
+
                         <div id="cv-container" class="cv-wrapper">
                             <!-- Populated dynamically if CV exists -->
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- Skills Section -->
         <section id="skills" class="section bg-alt">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="skills_title">Core Technical Skills</h2>
-                <p class="section-subtitle" data-i18n="skills_subtitle">Essential technologies and tools I use to build projects.</p>
+
+                <h2 class="section-title" data-i18n="skills_title">
+                    Core Technical Skills
+                </h2>
+
+                <p class="section-subtitle" data-i18n="skills_subtitle">
+                    Essential technologies and tools I use to build projects.
+                </p>
                 
                 <div class="skills-grid">
+
                     <div class="skill-category">
-                        <h3 data-i18n="skill_cat_web">Web Development</h3>
+
+                        <h3 data-i18n="skill_cat_web">
+                            Web Development
+                        </h3>
+
                         <div class="skill-tags">
                             <span class="skill-tag">HTML</span>
                             <span class="skill-tag">CSS</span>
                             <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag" data-i18n="skill_responsive">Responsive Web Design</span>
+                            <span class="skill-tag" data-i18n="skill_responsive">
+                                Responsive Web Design
+                            </span>
                             <span class="skill-tag">PWA</span>
                         </div>
+
                     </div>
 
                     <div class="skill-category">
-                        <h3 data-i18n="skill_cat_backend">Backend / Database</h3>
+
+                        <h3 data-i18n="skill_cat_backend">
+                            Backend / Database
+                        </h3>
+
                         <div class="skill-tags">
                             <span class="skill-tag">Firebase</span>
                             <span class="skill-tag">Supabase</span>
                         </div>
+
                     </div>
 
                     <div class="skill-category">
-                        <h3 data-i18n="skill_cat_tools">Development Tools</h3>
+
+                        <h3 data-i18n="skill_cat_tools">
+                            Development Tools
+                        </h3>
+
                         <div class="skill-tags">
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">GitHub</span>
                         </div>
+
                     </div>
 
                     <div class="skill-category">
-                        <h3 data-i18n="skill_cat_graphics">3D / Web Graphics Technology</h3>
+
+                        <h3 data-i18n="skill_cat_graphics">
+                            3D / Web Graphics Technology
+                        </h3>
+
                         <div class="skill-tags">
                             <span class="skill-tag">Three.js</span>
                         </div>
+
                     </div>
 
                     <div class="skill-category">
-                        <h3 data-i18n="skill_cat_game">Game Development</h3>
+
+                        <h3 data-i18n="skill_cat_game">
+                            Game Development
+                        </h3>
+
                         <div class="skill-tags">
-                            <span class="skill-tag" data-i18n="skill_gamedev">Game Development</span>
-                            <span class="skill-tag" data-i18n="skill_gameproto">Game Prototyping</span>
+
+                            <span class="skill-tag" data-i18n="skill_gamedev">
+                                Game Development
+                            </span>
+
+                            <span class="skill-tag" data-i18n="skill_gameproto">
+                                Game Prototyping
+                            </span>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- Projects Section -->
         <section id="projects" class="section">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="projects_title">Projects</h2>
-                <p class="section-subtitle" data-i18n="projects_subtitle">Explore my active development projects, game prototypes, and web applications.</p>
+
+                <h2 class="section-title" data-i18n="projects_title">
+                    Projects
+                </h2>
+
+                <p class="section-subtitle" data-i18n="projects_subtitle">
+                    Explore my active development projects, game prototypes, and web applications.
+                </p>
                 
                 <!-- Project Filters -->
                 <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
-                    <button class="filter-btn" data-filter="Web" data-i18n="filter_web">Web</button>
-                    <button class="filter-btn" data-filter="Games" data-i18n="filter_games">Games</button>
-                    <button class="filter-btn" data-filter="Marketplace" data-i18n="filter_marketplace">Marketplace</button>
-                    <button class="filter-btn" data-filter="E-Commerce" data-i18n="filter_ecommerce">E-Commerce</button>
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                        data-i18n="filter_all">
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Web"
+                        data-i18n="filter_web">
+                        Web
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Games"
+                        data-i18n="filter_games">
+                        Games
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Marketplace"
+                        data-i18n="filter_marketplace">
+                        Marketplace
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="E-Commerce"
+                        data-i18n="filter_ecommerce">
+                        E-Commerce
+                    </button>
+
                 </div>
 
                 <!-- Projects Container -->
-                <div class="projects-grid" id="projects-grid">
+                <div
+                    class="projects-grid"
+                    id="projects-grid">
                     <!-- Dynamically populated from projects.js -->
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- Journey Section -->
         <section id="journey" class="section bg-alt">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="journey_title">My Journey</h2>
+
+                <h2 class="section-title" data-i18n="journey_title">
+                    My Journey
+                </h2>
+
                 <div class="timeline">
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h3 data-i18n="journey_item_1_title">School & High School Completion</h3>
-                            <p data-i18n="journey_item_1_desc">Graduated from Grade 12 at Lise Naser Shaheed, building a strong educational foundation.</p>
+
+                            <h3 data-i18n="journey_item_1_title">
+                                School & High School Completion
+                            </h3>
+
+                            <p data-i18n="journey_item_1_desc">
+                                Graduated from Grade 12 at Lise Naser Shaheed, building a strong educational foundation.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h3 data-i18n="journey_item_2_title">English Course Certification</h3>
-                            <p data-i18n="journey_item_2_desc">Completed professional English language training to expand access to global development resources.</p>
+
+                            <h3 data-i18n="journey_item_2_title">
+                                English Course Certification
+                            </h3>
+
+                            <p data-i18n="journey_item_2_desc">
+                                Completed professional English language training to expand access to global development resources.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h3 data-i18n="journey_item_3_title">Beginning Web Development</h3>
-                            <p data-i18n="journey_item_3_desc">Started writing code, mastering HTML, CSS, and JavaScript, and establishing core web development workflows.</p>
+
+                            <h3 data-i18n="journey_item_3_title">
+                                Beginning Web Development
+                            </h3>
+
+                            <p data-i18n="journey_item_3_desc">
+                                Started writing code, mastering HTML, CSS, and JavaScript, and establishing core web development workflows.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h3 data-i18n="journey_item_4_title">Cina Games Brand & Game Prototyping</h3>
-                            <p data-i18n="journey_item_4_desc">Launched the Cina Games creator brand and began developing interactive game prototypes like The Ciner.</p>
+
+                            <h3 data-i18n="journey_item_4_title">
+                                Cina Games Brand & Game Prototyping
+                            </h3>
+
+                            <p data-i18n="journey_item_4_desc">
+                                Launched the Cina Games creator brand and began developing interactive game prototypes like The Ciner.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h3 data-i18n="journey_item_5_title">Web Applications & Current Projects</h3>
-                            <p data-i18n="journey_item_5_desc">Developing modern web apps, e-commerce stores, marketplaces (Bazaarak), and utility software projects.</p>
+
+                            <h3 data-i18n="journey_item_5_title">
+                                Web Applications & Current Projects
+                            </h3>
+
+                            <p data-i18n="journey_item_5_desc">
+                                Developing modern web apps, e-commerce stores, marketplaces (Bazaarak), and utility software projects.
+                            </p>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- GitHub Section -->
         <section id="github" class="section">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="github_title">GitHub Activity & Repositories</h2>
-                <p class="section-subtitle" data-i18n="github_subtitle">Public code repositories and open-source contributions.</p>
+
+                <h2 class="section-title" data-i18n="github_title">
+                    GitHub Activity & Repositories
+                </h2>
+
+                <p class="section-subtitle" data-i18n="github_subtitle">
+                    Public code repositories and open-source contributions.
+                </p>
                 
-                <div class="github-profile-card" id="github-profile-card">
-                    <div class="github-loading" data-i18n="github_loading">Loading public repositories...</div>
+                <div
+                    class="github-profile-card"
+                    id="github-profile-card">
+
+                    <div
+                        class="github-loading"
+                        data-i18n="github_loading">
+                        Loading public repositories...
+                    </div>
+
                 </div>
                 
                 <div class="github-action-wrapper">
-                    <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="btn_view_github_profile">View Full GitHub Profile</a>
+
+                    <a
+                        href="https://github.com/ahmadfarhadcina-tech"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary"
+                        data-i18n="btn_view_github_profile">
+                        View Full GitHub Profile
+                    </a>
+
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- Contact Section -->
         <section id="contact" class="section bg-alt">
+
             <div class="container">
-                <h2 class="section-title" data-i18n="contact_title">Get In Touch</h2>
-                <p class="section-subtitle" data-i18n="contact_subtitle">Connect with me across platforms or reach out for collaboration.</p>
+
+                <h2 class="section-title" data-i18n="contact_title">
+                    Get In Touch
+                </h2>
+
+                <p class="section-subtitle" data-i18n="contact_subtitle">
+                    Connect with me across platforms or reach out for collaboration.
+                </p>
                 
                 <div class="contact-grid">
+
                     <div class="contact-card-item">
+
                         <div class="contact-icon">🐙</div>
+
                         <h3>GitHub</h3>
-                        <p>ahmadfarhadcina-tech</p>
-                        <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Visit Profile &rarr;</a>
+
+                        <p>
+                            ahmadfarhadcina-tech
+                        </p>
+
+                        <a
+                            href="https://github.com/ahmadfarhadcina-tech"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-arrow"
+                            data-i18n="link_visit">
+                            Visit Profile &rarr;
+                        </a>
+
                     </div>
+
+
                     <div class="contact-card-item">
+
                         <div class="contact-icon">📺</div>
+
                         <h3>YouTube</h3>
-                        <p>@Farhad_Cina & @CinaGames-b4v</p>
-                        <a href="https://youtube.com/@Farhad_Cina" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Visit Channel &rarr;</a>
+
+                        <p>
+                            @Farhad_Cina & @CinaGames-b4v
+                        </p>
+
+                        <a
+                            href="https://youtube.com/@Farhad_Cina"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-arrow"
+                            data-i18n="link_visit">
+                            Visit Channel &rarr;
+                        </a>
+
                     </div>
+
+
                     <div class="contact-card-item">
+
                         <div class="contact-icon">✈️</div>
+
                         <h3>Telegram</h3>
-                        <p>@afghangamerx</p>
-                        <a href="https://t.me/afghangamerx" target="_blank" rel="noopener noreferrer" class="link-arrow" data-i18n="link_visit">Message &rarr;</a>
+
+                        <p>
+                            @afghangamerx
+                        </p>
+
+                        <a
+                            href="https://t.me/afghangamerx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-arrow"
+                            data-i18n="link_visit">
+                            Message &rarr;
+                        </a>
+
                     </div>
+
                 </div>
 
-                <!-- Contact Message Form (Prepared for future backend integration) -->
+
+                <!-- Contact Message Form -->
                 <div class="contact-form-container">
-                    <h3 data-i18n="form_title">Send a Message</h3>
-                    <form id="contact-form" class="contact-form" onsubmit="event.preventDefault(); alert(translations[currentLang].form_alert || 'Message form ready for future backend integration.');">
+
+                    <h3 data-i18n="form_title">
+                        Send a Message
+                    </h3>
+
+                    <form
+                        id="contact-form"
+                        class="contact-form"
+                        onsubmit="event.preventDefault(); alert(translations[currentLang].form_alert || 'Message form ready for future backend integration.');">
+
                         <div class="form-group">
-                            <label for="visitor-name" data-i18n="form_name">Your Name</label>
-                            <input type="text" id="visitor-name" required placeholder="Enter your name">
+
+                            <label
+                                for="visitor-name"
+                                data-i18n="form_name">
+                                Your Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="visitor-name"
+                                required
+                                placeholder="Enter your name">
+
                         </div>
+
+
                         <div class="form-group">
-                            <label for="visitor-email" data-i18n="form_email">Your Email / Contact</label>
-                            <input type="text" id="visitor-email" required placeholder="Enter your email or contact">
+
+                            <label
+                                for="visitor-email"
+                                data-i18n="form_email">
+                                Your Email / Contact
+                            </label>
+
+                            <input
+                                type="text"
+                                id="visitor-email"
+                                required
+                                placeholder="Enter your email or contact">
+
                         </div>
+
+
                         <div class="form-group">
-                            <label for="visitor-message" data-i18n="form_message">Message</label>
-                            <textarea id="visitor-message" rows="4" required placeholder="Write your message here..."></textarea>
+
+                            <label
+                                for="visitor-message"
+                                data-i18n="form_message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="visitor-message"
+                                rows="4"
+                                required
+                                placeholder="Write your message here..."></textarea>
+
                         </div>
-                        <button type="submit" class="btn btn-primary" data-i18n="form_submit">Send Message</button>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-i18n="form_submit">
+                            Send Message
+                        </button>
+
                     </form>
+
                 </div>
+
             </div>
+
         </section>
+
     </main>
+
 
     <!-- Footer -->
     <footer class="site-footer">
+
         <div class="container footer-container">
-            <p>&copy; <span id="current-year">2026</span> Farhad Cina (Cina Games). <span data-i18n="footer_rights">All rights reserved.</span></p>
+
+            <p>
+                &copy;
+                <span id="current-year">2026</span>
+                Farhad Cina (Cina Games).
+                <span data-i18n="footer_rights">
+                    All rights reserved.
+                </span>
+            </p>
+
             <div class="footer-socials">
-                <a href="https://github.com/ahmadfarhadcina-tech" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://youtube.com/@Farhad_Cina" target="_blank" rel="noopener noreferrer">YouTube</a>
-                <a href="https://t.me/afghangamerx" target="_blank" rel="noopener noreferrer">Telegram</a>
+
+                <a
+                    href="https://github.com/ahmadfarhadcina-tech"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a
+                    href="https://youtube.com/@Farhad_Cina"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a
+                    href="https://t.me/afghangamerx"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Telegram
+                </a>
+
             </div>
+
         </div>
+
     </footer>
 
+
     <!-- Project Detail Modal -->
-    <div id="project-modal" class="modal" aria-hidden="true">
+    <div
+        id="project-modal"
+        class="modal"
+        aria-hidden="true">
+
         <div class="modal-content">
-            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">&times;</button>
+
+            <button
+                class="modal-close"
+                id="modal-close-btn"
+                aria-label="Close Modal">
+                &times;
+            </button>
+
             <div id="modal-body">
                 <!-- Dynamically populated -->
             </div>
+
         </div>
+
     </div>
+
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="modal" aria-hidden="true">
+    <div
+        id="settings-modal"
+        class="modal"
+        aria-hidden="true">
+
         <div class="modal-content settings-content">
-            <button class="modal-close" id="settings-close-btn" aria-label="Close Settings">&times;</button>
-            <h3 data-i18n="settings_title">Website Settings</h3>
+
+            <button
+                class="modal-close"
+                id="settings-close-btn"
+                aria-label="Close Settings">
+                &times;
+            </button>
+
+            <h3 data-i18n="settings_title">
+                Website Settings
+            </h3>
             
             <div class="setting-option">
-                <label for="setting-lang" data-i18n="setting_lang">Language</label>
+
+                <label
+                    for="setting-lang"
+                    data-i18n="setting_lang">
+                    Language
+                </label>
+
                 <select id="setting-lang">
-                    <option value="en">English</option>
-                    <option value="fa">فارسی</option>
-                    <option value="ar">العربية</option>
-                    <option value="ps">پښتو</option>
-                    <option value="tr">Türkçe</option>
+
+                    <option value="en">
+                        English
+                    </option>
+
+                    <option value="fa">
+                        فارسی
+                    </option>
+
+                    <option value="ar">
+                        العربية
+                    </option>
+
+                    <option value="ps">
+                        پښتو
+                    </option>
+
+                    <option value="tr">
+                        Türkçe
+                    </option>
+
                 </select>
+
             </div>
+
 
             <div class="setting-option">
-                <label for="setting-theme" data-i18n="setting_theme">Theme Mode</label>
+
+                <label
+                    for="setting-theme"
+                    data-i18n="setting_theme">
+                    Theme Mode
+                </label>
+
                 <select id="setting-theme">
-                    <option value="dark">🌙 Dark</option>
-                    <option value="light">☀️ Light</option>
-                    <option value="system">🖥 System</option>
+
+                    <option value="dark">
+                        🌙 Dark
+                    </option>
+
+                    <option value="light">
+                        ☀️ Light
+                    </option>
+
+                    <option value="system">
+                        🖥 System
+                    </option>
+
                 </select>
+
             </div>
+
 
             <div class="setting-option checkbox-option">
+
                 <label>
-                    <input type="checkbox" id="setting-reduced-motion">
-                    <span data-i18n="setting_motion">Reduce Animations / Motion</span>
+
+                    <input
+                        type="checkbox"
+                        id="setting-reduced-motion">
+
+                    <span data-i18n="setting_motion">
+                        Reduce Animations / Motion
+                    </span>
+
                 </label>
+
             </div>
+
 
             <div class="setting-actions">
-                <button id="reset-preferences-btn" class="btn btn-outline" data-i18n="setting_reset">Reset Preferences</button>
+
+                <button
+                    id="reset-preferences-btn"
+                    class="btn btn-outline"
+                    data-i18n="setting_reset">
+                    Reset Preferences
+                </button>
+
             </div>
+
         </div>
+
     </div>
 
+
     <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to Top">&uarr;</button>
+    <button
+        id="back-to-top"
+        aria-label="Back to Top">
+        &uarr;
+    </button>
+
 
     <!-- Scripts -->
     <script src="assets/js/config.js"></script>
@@ -492,56 +1299,354 @@
     <script src="assets/js/github.js"></script>
     <script src="assets/js/app.js"></script>
 
+
     <!-- PWA Install Logic -->
     <script>
         let deferredPWAInstallPrompt = null;
 
-        const pwaInstallCard = document.getElementById('pwa-install-card');
-        const pwaInstallButton = document.getElementById('pwa-install-button');
+        const pwaInstallCard =
+            document.getElementById('pwa-install-card');
 
-        window.addEventListener('beforeinstallprompt', function (event) {
-            event.preventDefault();
+        const pwaInstallButton =
+            document.getElementById('pwa-install-button');
 
-            deferredPWAInstallPrompt = event;
+        const pwaInstallModal =
+            document.getElementById('pwa-install-modal');
 
-            if (pwaInstallCard) {
-                pwaInstallCard.style.display = 'block';
+        const pwaModalClose =
+            document.getElementById('pwa-modal-close');
+
+        const pwaModalInstall =
+            document.getElementById('pwa-modal-install');
+
+        const pwaModalCancel =
+            document.getElementById('pwa-modal-cancel');
+
+
+        function openPWAInstallModal() {
+
+            if (pwaInstallModal) {
+
+                pwaInstallModal.classList.add('active');
+
+                pwaInstallModal.setAttribute(
+                    'aria-hidden',
+                    'false'
+                );
+
             }
-        });
 
-        if (pwaInstallButton) {
-            pwaInstallButton.addEventListener('click', async function () {
-                if (!deferredPWAInstallPrompt) {
-                    return;
-                }
-
-                deferredPWAInstallPrompt.prompt();
-
-                const result = await deferredPWAInstallPrompt.userChoice;
-
-                if (result.outcome === 'accepted') {
-                    pwaInstallCard.style.display = 'none';
-                }
-
-                deferredPWAInstallPrompt = null;
-            });
         }
 
-        window.addEventListener('appinstalled', function () {
-            if (pwaInstallCard) {
-                pwaInstallCard.style.display = 'none';
+
+        function closePWAInstallModal() {
+
+            if (pwaInstallModal) {
+
+                pwaInstallModal.classList.remove('active');
+
+                pwaInstallModal.setAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+
             }
 
-            deferredPWAInstallPrompt = null;
-        });
-   </script>
+        }
 
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/My/sw.js");
-    });
-}
-</script>
+
+        window.addEventListener(
+            'beforeinstallprompt',
+            function (event) {
+
+                event.preventDefault();
+
+                deferredPWAInstallPrompt = event;
+
+                if (pwaInstallCard) {
+
+                    pwaInstallCard.style.display =
+                        'block';
+
+                }
+
+            }
+        );
+
+
+        if (pwaInstallButton) {
+
+            pwaInstallButton.addEventListener(
+                'click',
+                function () {
+
+                    openPWAInstallModal();
+
+                }
+            );
+
+        }
+
+
+        if (pwaModalClose) {
+
+            pwaModalClose.addEventListener(
+                'click',
+                closePWAInstallModal
+            );
+
+        }
+
+
+        if (pwaModalCancel) {
+
+            pwaModalCancel.addEventListener(
+                'click',
+                closePWAInstallModal
+            );
+
+        }
+
+
+        if (pwaModalInstall) {
+
+            pwaModalInstall.addEventListener(
+                'click',
+                async function () {
+
+                    if (!deferredPWAInstallPrompt) {
+
+                        closePWAInstallModal();
+
+                        return;
+
+                    }
+
+
+                    deferredPWAInstallPrompt.prompt();
+
+
+                    const result =
+                        await deferredPWAInstallPrompt.userChoice;
+
+
+                    if (result.outcome === 'accepted') {
+
+                        if (pwaInstallCard) {
+
+                            pwaInstallCard.style.display =
+                                'none';
+
+                        }
+
+                    }
+
+
+                    deferredPWAInstallPrompt = null;
+
+                    closePWAInstallModal();
+
+                }
+            );
+
+        }
+
+
+        window.addEventListener(
+            'appinstalled',
+            function () {
+
+                if (pwaInstallCard) {
+
+                    pwaInstallCard.style.display =
+                        'none';
+
+                }
+
+                closePWAInstallModal();
+
+                deferredPWAInstallPrompt = null;
+
+            }
+        );
+
+
+        if (pwaInstallModal) {
+
+            pwaInstallModal.addEventListener(
+                'click',
+                function (event) {
+
+                    if (event.target === pwaInstallModal) {
+
+                        closePWAInstallModal();
+
+                    }
+
+                }
+            );
+
+        }
+    </script>
+
+
+    <!-- Beautiful Language Selection -->
+    <script>
+        const languageSelect =
+            document.getElementById('language-select');
+
+        const languageModal =
+            document.getElementById('language-modal');
+
+        const languageModalClose =
+            document.getElementById('language-modal-close');
+
+        const languageOptions =
+            document.querySelectorAll(
+                '.language-options button'
+            );
+
+
+        if (languageSelect) {
+
+            languageSelect.addEventListener(
+                'mousedown',
+                function (event) {
+
+                    event.preventDefault();
+
+                    if (languageModal) {
+
+                        languageModal.classList.add(
+                            'active'
+                        );
+
+                        languageModal.setAttribute(
+                            'aria-hidden',
+                            'false'
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        if (languageModalClose) {
+
+            languageModalClose.addEventListener(
+                'click',
+                function () {
+
+                    languageModal.classList.remove(
+                        'active'
+                    );
+
+                    languageModal.setAttribute(
+                        'aria-hidden',
+                        'true'
+                    );
+
+                }
+            );
+
+        }
+
+
+        languageOptions.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    'click',
+                    function () {
+
+                        const selectedLanguage =
+                            this.getAttribute(
+                                'data-language'
+                            );
+
+
+                        if (languageSelect) {
+
+                            languageSelect.value =
+                                selectedLanguage;
+
+
+                            languageSelect.dispatchEvent(
+                                new Event(
+                                    'change',
+                                    {
+                                        bubbles: true
+                                    }
+                                )
+                            );
+
+                        }
+
+
+                        languageModal.classList.remove(
+                            'active'
+                        );
+
+                        languageModal.setAttribute(
+                            'aria-hidden',
+                            'true'
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        if (languageModal) {
+
+            languageModal.addEventListener(
+                'click',
+                function (event) {
+
+                    if (
+                        event.target === languageModal
+                    ) {
+
+                        languageModal.classList.remove(
+                            'active'
+                        );
+
+                        languageModal.setAttribute(
+                            'aria-hidden',
+                            'true'
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    </script>
+
+
+    <!-- Service Worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener(
+                "load",
+                () => {
+
+                    navigator.serviceWorker.register(
+                        "/My/sw.js"
+                    );
+
+                }
+            );
+
+        }
+    </script>
+
 </body>
 </html>
